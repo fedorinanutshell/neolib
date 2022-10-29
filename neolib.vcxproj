@@ -22,6 +22,7 @@
     <ClInclude Include="include\neolib\angle.hpp" />
     <ClInclude Include="include\neolib\base.hpp" />
     <ClInclude Include="include\neolib\math.hpp" />
+    <ClInclude Include="include\neolib\random.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\neolib\main.cpp" />
