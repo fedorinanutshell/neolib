@@ -90,6 +90,9 @@ namespace nl {
 		constexpr angle(const f64& x) {
 			a = clamp(x);
 		};
+		constexpr angle(const f64& x, const at& type) {
+			a = from(x, type);
+		};
 
 		constexpr angle& clamp() {
 			a = clamp(a);

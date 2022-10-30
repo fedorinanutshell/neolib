@@ -5,6 +5,9 @@
     <ClInclude Include="include\neolib\math.hpp" />
     <ClInclude Include="include\neolib\angle.hpp" />
     <ClInclude Include="include\neolib\random.hpp" />
+    <ClInclude Include="include\neolib\vector\vector2.hpp">
+      <Filter>vector</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\neolib\main.cpp" />
