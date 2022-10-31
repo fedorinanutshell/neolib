@@ -24,6 +24,7 @@
     <ClInclude Include="include\neolib\interpolation.hpp" />
     <ClInclude Include="include\neolib\math.hpp" />
     <ClInclude Include="include\neolib\noise.hpp" />
+    <ClInclude Include="include\neolib\noise\perlin.hpp" />
     <ClInclude Include="include\neolib\random.hpp" />
     <ClInclude Include="include\neolib\vector\vector2.hpp" />
   </ItemGroup>

@@ -9,7 +9,12 @@
       <Filter>vector</Filter>
     </ClInclude>
     <ClInclude Include="include\neolib\interpolation.hpp" />
-    <ClInclude Include="include\neolib\noise.hpp" />
+    <ClInclude Include="include\neolib\noise\perlin.hpp">
+      <Filter>noise</Filter>
+    </ClInclude>
+    <ClInclude Include="include\neolib\noise.hpp">
+      <Filter>noise</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\neolib\main.cpp" />
@@ -17,6 +22,9 @@
   <ItemGroup>
     <Filter Include="vector">
       <UniqueIdentifier>{7e2cfa42-072c-42f2-acae-5e037be9fbdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="noise">
+      <UniqueIdentifier>{2d1c4f7d-1eb7-4d09-8186-4e245013a924}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
