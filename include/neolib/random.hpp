@@ -258,6 +258,29 @@ namespace nl {
 		return (((p_5 * 17 + p_17) * 257 + p_257) * 3 + p_3) * 65537 + p_65537;
 	};
 
+	constexpr u64 deprime_u64(u64 seed) {
+		u64 p_3 = seed % 3;
+		seed /= 3;
+		u64 p_5 = seed % 5;
+		seed /= 5;
+		u64 p_17 = seed % 17;
+		seed /= 17;
+		u64 p_257 = seed % 257;
+		seed /= 257;
+		u64 p_65537 = seed % 65537;
+		seed /= 65537;
+		u64 p_4294967297 = seed % 4294967297;
+
+		p_3 = (2 * p_3 + 1) % 3;
+		p_5 = (3 * p_5 + 1) % 5;
+		p_17 = (11 * p_17 + 1) % 17;
+		p_257 = (19 * p_257 + 1) % 257;
+		p_65537 = (263 * p_65537 + 1) % 65537;
+		p_4294967297 = (65563 * p_4294967297 + 1) % 4294967297;
+
+		return ((((p_5 * 17 + p_17) * 4294967297 + p_4294967297) * 257 + p_257) * 3 + p_3) * 65537 + p_65537;
+	};
+
 	constexpr u8 random_u8(u8 seed) {
 		return quarter_u8(deprime_u8(seed));
 	};
@@ -267,22 +290,30 @@ namespace nl {
 	};
 
 	constexpr u32 random_u32(u32 seed) {
-		return quarter_u32(deprime_u32(seed));
+		return eighth_u32(deprime_u32(seed));
+	};
+
+	constexpr u64 random_u64(u64 seed) {
+		return eighth_u64(deprime_u64(seed));
 	};
 
 	constexpr s8 random_s8(u8 seed) {
-		return s16(random_u8(seed)) - 128;
+		return s8(random_u8(seed) / 2) * ((random_u8(seed) % 2) == 0 ? 1 : -1);
 	};
 
 	constexpr s16 random_s16(u16 seed) {
-		return s32(random_u16(seed)) - 32768;
+		return s16(random_u16(seed) / 2) * ((random_u16(seed) % 2) == 0 ? 1 : -1);
 	};
 
 	constexpr s32 random_s32(u32 seed) {
-		return s64(random_u32(seed)) - 2147483648;
+		return s32(random_u32(seed) / 2) * ((random_u32(seed) % 2) == 0 ? 1 : -1);
 	};
 
-	constexpr float random_ufloat(u32 seed) {
+	constexpr s64 random_s64(u64 seed) {
+		return s64(random_u64(seed) / 2) * ((random_u64(seed) % 2) == 0 ? 1 : -1);
+	};
+
+	/*constexpr float random_ufloat(u32 seed) {
 		return float(random_u32(seed)) / float(random_u32(~seed));
 	};
 
@@ -292,5 +323,47 @@ namespace nl {
 
 	constexpr float random_float(u32 seed) {
 		return fraction(float(random_u32(seed)) / float(random_u32(std::rotl(seed, 16))));
+	};*/
+
+	constexpr f32 random_clamped_uf32(u16 seed) {
+		return f32(random_u16(seed)) / 65536.0f;
 	};
+	constexpr f64 random_clamped_uf64(u32 seed) {
+		return f64(random_u32(seed)) / 4294967296.0;
+	};
+
+	constexpr f32 random_clamped_sf32(u16 seed) {
+		return f32(random_s16(seed)) / 32768.0f;
+	};
+	constexpr f64 random_clamped_sf64(u32 seed) {
+		return f64(random_s32(seed)) / 2147483648.0;
+	};
+
+	constexpr f32 random_unclamped_uf32(u16 seed) {
+		return 65536.0f * f32(random_u16(~seed));
+	};
+	constexpr f64 random_unclamped_uf64(u32 seed) {
+		return 4294967296.0 * f64(random_u32(~seed));
+	};
+
+	constexpr f32 random_unclamped_sf32(u16 seed) {
+		return 32768.0f * f32(random_s16(~seed));
+	};
+	constexpr f64 random_unclamped_sf64(u32 seed) {
+		return 2147483648.0 * f64(random_s32(~seed));
+	};
+
+	/*constexpr f32 random_uf32(u16 seed) {
+		return random_unclamped_uf32(seed) / random_clamped_uf32(seed);
+	};
+	constexpr f64 random_uf64(u16 seed) {
+		return random_unclamped_uf64(seed) / random_clamped_uf64(seed);
+	};
+
+	constexpr f32 random_sf32(u16 seed) {
+		return random_unclamped_sf32(seed) * random_clamped_sf32(seed);
+	};
+	constexpr f64 random_sf64(u16 seed) {
+		return random_unclamped_sf64(seed) * random_clamped_sf64(seed);
+	};*/
 }

@@ -21,7 +21,9 @@
   <ItemGroup>
     <ClInclude Include="include\neolib\angle.hpp" />
     <ClInclude Include="include\neolib\base.hpp" />
+    <ClInclude Include="include\neolib\interpolation.hpp" />
     <ClInclude Include="include\neolib\math.hpp" />
+    <ClInclude Include="include\neolib\noise.hpp" />
     <ClInclude Include="include\neolib\random.hpp" />
     <ClInclude Include="include\neolib\vector\vector2.hpp" />
   </ItemGroup>

@@ -13,7 +13,7 @@ namespace nl {
 		template<typename TT> constexpr vector2(const TT& a, const TT& b) { x = a; y = b; };
 		template<typename TT> constexpr vector2(const TT& a) { x = a; y = a; };
 
-		template<typename TT> constexpr vector2(const vector2& v) { x = v.x; y = v.y; };
+		template<typename TT> constexpr vector2(const vector2<TT>& v) { x = v.x; y = v.y; };
 		template<typename TT, typename TTT> constexpr vector2(const std::pair<TT, TTT>& p) { x = p.first; y = p.second; };
 
 		constexpr T scalar() { return std::sqrt(x * x + y * y); };
@@ -58,7 +58,7 @@ namespace nl {
 
 		constexpr vector2(const angle& a) { x = std::cos(a.val()); y = std::sin(a.val()); };
 	};
-}
+};
 
 template<typename T> std::ostream& operator<<(std::ostream& out, const nl::vector2<T>& v) {
 	return out << v.x << " " << v.y;
@@ -91,4 +91,23 @@ namespace nl {
 
 	using f32vec2 = nl::vector2<nl::f32>;
 	using f64vec2 = nl::vector2<nl::f64>;
+};
+
+template<typename T> constexpr bool operator==(const nl::vector2<T>& lvec, const nl::vector2<T>& rvec) {
+	return (lvec.x == rvec.x) && (lvec.y == rvec.y);
+};
+
+template<typename T> struct std::equal_to<nl::vector2<T>> {
+	bool operator()(const nl::vector2<T>& lvec, const nl::vector2<T>& rvec) const {
+		return (lvec.x == rvec.x) && (lvec.y == rvec.y);
+	};
+};
+
+template<typename T> struct std::hash<nl::vector2<T>> {
+	std::size_t operator()(nl::vector2<T> vec) const {
+		std::size_t res;
+		res = (res << 19) ^ (res >> 13); res ^= std::hash<T>{}(vec.x);
+		res = (res << 19) ^ (res >> 13); res ^= std::hash<T>{}(vec.y);
+		return res;
+	};
 };

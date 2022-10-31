@@ -8,6 +8,8 @@
     <ClInclude Include="include\neolib\vector\vector2.hpp">
       <Filter>vector</Filter>
     </ClInclude>
+    <ClInclude Include="include\neolib\interpolation.hpp" />
+    <ClInclude Include="include\neolib\noise.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\neolib\main.cpp" />

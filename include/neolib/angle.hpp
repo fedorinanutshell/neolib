@@ -3,6 +3,7 @@
 #include <numbers>
 
 #include "math.hpp"
+#include "random.hpp"
 
 namespace nl {
 	struct angle {
@@ -146,6 +147,13 @@ namespace nl {
 		constexpr angle& operator/=(const f64& x) {
 			a /= x;
 			return clamp();
+		};
+
+		static constexpr angle random(const u32& seed, const f64& range) {
+			return angle(random_clamped_uf64(seed) * range);
+		};
+		static constexpr angle random(const u32& seed) {
+			return random(seed, tau);
 		};
 	};
 
