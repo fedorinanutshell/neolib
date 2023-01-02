@@ -19,7 +19,16 @@ namespace nl {
 		constexpr T scalar() { return std::sqrt(x * x + y * y); };
 		constexpr T scalar() const { return std::sqrt(x * x + y * y); };
 
-		constexpr vector2& normalize() { x = scalar() == 0 ? 0 : x / scalar(); y = scalar() == 0 ? 0 : y / scalar(); return *this; };
+		constexpr vector2& normalize() {
+			T s = scalar();
+			if (s == 0) {
+				x = 0; y = 0;
+			}
+			else {
+				x /= s; y /= s;
+			};
+			return *this;
+		};
 
 		constexpr vector2 normalized() { return vector2(x, y).normalize(); };
 		constexpr vector2 normalized() const { return vector2(x, y).normalize(); };

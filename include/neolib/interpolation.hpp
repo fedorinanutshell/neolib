@@ -4,7 +4,7 @@
 
 namespace nl {
 	enum class interpolation {
-		discrete, linear, cubic
+		nearest, linear, cubic
 	};
 
 	constexpr f64 linearInterpolation(f64 a, f64 b, f64 pos, f64 range) {

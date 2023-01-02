@@ -1,11 +1,10 @@
 #include <iostream>
 #include <iomanip>
+#include <chrono>
 
 #include "angle.hpp"
 #include "random.hpp"
-#include "vector/vector2.hpp"
-#include "noise/perlin.hpp"
+#include "vectors.hpp"
 
 int main() {
-	
 };
